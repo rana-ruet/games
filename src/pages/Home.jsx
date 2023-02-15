@@ -23,6 +23,20 @@ function Home() {
           <Game key={game.id} gameData={game} />
         ))}
       </Games>
+
+      <h2>Popular Games</h2>
+      <Games>
+        {popular.map((game) => (
+          <Game key={game.id} gameData={game} />
+        ))}
+      </Games>
+
+      <h2>New Games</h2>
+      <Games>
+        {newGames.map((game) => (
+          <Game key={game.id} gameData={game} />
+        ))}
+      </Games>
     </GameList>
   );
 }
