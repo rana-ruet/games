@@ -11,5 +11,9 @@ const apiKey = import.meta.env.VITE_API_KEY;
 const baseUrl = `https://api.rawg.io/api/games?key=${apiKey}&`;
 
 const popular_games = `dates=${lastYear},${currentDate}&ordering=-rating&page_size=10`;
+const upcoming_games = `dates=${currentDate},${nextYear}&ordering=-added&page_size=10`;
+const new_games = `dates=${lastYear},${currentDate}&ordering=-released&page_size=10`;
 
 export const popularGamesURL = `${baseUrl}${popular_games}`;
+export const upcomingGamesURL = `${baseUrl}${upcoming_games}`;
+export const newGamesURL = `${baseUrl}${new_games}`;
