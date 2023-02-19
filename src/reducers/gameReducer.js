@@ -15,7 +15,7 @@ const gameReducer = (state = initialState, action) => {
       };
 
     default:
-      return { ...state };
+      return state;
   }
 };
 

@@ -1,34 +1,45 @@
-import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import { loadDetail } from '../actions/detailAction';
-import { gameDetailsURL, gameScreenshotURL } from '../api';
+import { smallImage } from '../utils';
 
 const Game = ({ gameData }) => {
   const dispatch = useDispatch();
+  const stringPathId = gameData.id.toString();
 
   const loadDetailHandler = (id) => {
+    document.body.style.overflow = 'hidden';
     dispatch(loadDetail(id));
   };
 
   return (
-    <StyledGame onClick={() => loadDetailHandler(gameData.id)}>
-      <h3>{gameData.name}</h3>
-      <p>{gameData.released}</p>
-      <img loading='lazy' src={gameData.background_image} alt={gameData.name} />
+    <StyledGame layoutId={stringPathId} onClick={() => loadDetailHandler(gameData.id)}>
+      <Link to={`/game/${gameData.id}`}>
+        <motion.h3 layoutId={`title ${stringPathId}`}>{gameData.name}</motion.h3>
+        <p>{gameData.released}</p>
+        <motion.img
+          layoutId={`image ${stringPathId}`}
+          loading='lazy'
+          src={smallImage(gameData.background_image, 640)}
+          alt={gameData.name}
+        />
+      </Link>
     </StyledGame>
   );
 };
 
 const StyledGame = styled(motion.div)`
-  min-height: 30vh;
+  min-height: 30rem;
   box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
   text-align: center;
   border-radius: 1rem;
+  overflow: hidden;
   img {
     width: 100%;
+    height: 20rem;
     object-fit: cover;
   }
 `;

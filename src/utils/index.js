@@ -12,4 +12,11 @@ const getCurrentDate = () => {
   return date < 10 ? `0${date}` : date;
 };
 
-export { getCurrentYear, getCurrentMonth, getCurrentDate };
+const smallImage = (imagePath, size) => {
+  const image = imagePath.match(/media\/screenshots/)
+    ? imagePath.replace('media/screenshots', `media/resize/${size}/-/screenshots`)
+    : imagePath.replace('/media/games/', `/media/resize/${size}/-/games/`);
+  return image;
+};
+
+export { getCurrentYear, getCurrentMonth, getCurrentDate, smallImage };
