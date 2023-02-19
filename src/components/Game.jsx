@@ -32,14 +32,14 @@ const Game = ({ gameData }) => {
 };
 
 const StyledGame = styled(motion.div)`
-  min-height: 30rem;
+  height: 25rem;
   box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
   text-align: center;
   border-radius: 1rem;
   overflow: hidden;
   img {
     width: 100%;
-    height: 20rem;
+    height: 100%;
     object-fit: cover;
   }
 `;

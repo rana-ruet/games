@@ -49,9 +49,10 @@ function Home() {
 export default Home;
 
 const GameList = styled(motion.div)`
-  padding: 0rem 5rem;
+  padding: 0rem 2rem;
   h2 {
-    padding: 5rem 0rem;
+    padding: 3rem 0rem;
+    text-align: center;
   }
 `;
 const Games = styled(motion.div)`

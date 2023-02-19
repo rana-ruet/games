@@ -107,7 +107,7 @@ const Platforms = styled(motion.div)`
   display: flex;
   justify-content: space-evenly;
   img {
-    margin-left: 3rem;
+    margin-left: 1.5rem;
   }
 `;
 
