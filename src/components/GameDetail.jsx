@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
-import { smallImage } from '../utils';
+import { smallImage, getPlatform, getStars } from '../utils';
 
 const GameDetail = ({ pathId }) => {
   const navigate = useNavigate();
@@ -18,17 +18,18 @@ const GameDetail = ({ pathId }) => {
   return createPortal(
     <CardShadow onClick={handleClick}>
       {isLoading ? null : (
-        <Detail layoutId={pathId} onClick={(e) => e.stopPropagation()}>
+        <Detail layoutId={pathId} layout layoutRoot onClick={(e) => e.stopPropagation()}>
           <Stats>
             <div className='rating'>
               <motion.h3 layoutId={`title ${pathId}`}>{detail.name}</motion.h3>
               <p>Rating: {detail.rating}</p>
+              {getStars(detail.rating)}
             </div>
             <Info>
               <h3>Platforms</h3>
               <Platforms>
-                {detail.platforms.map((data) => (
-                  <h3 key={data.platform.id}>{data.platform.name}</h3>
+                {detail.parent_platforms.map((data) => (
+                  <img key={data.platform.id} src={getPlatform(data.platform.name)} alt={data.platform.name} />
                 ))}
               </Platforms>
             </Info>
@@ -93,6 +94,11 @@ const Stats = styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  img {
+    width: 1.5rem;
+    height: 1.5rem;
+    display: inline-block;
+  }
 `;
 const Info = styled(motion.div)`
   text-align: center;
