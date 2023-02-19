@@ -13,9 +13,9 @@ const getCurrentDate = () => {
 };
 
 const smallImage = (imagePath, size) => {
-  const image = imagePath.match(/media\/screenshots/)
-    ? imagePath.replace('media/screenshots', `media/resize/${size}/-/screenshots`)
-    : imagePath.replace('/media/games/', `/media/resize/${size}/-/games/`);
+  const image = imagePath?.match(/media\/screenshots/)
+    ? imagePath?.replace('media/screenshots', `media/resize/${size}/-/screenshots`)
+    : imagePath?.replace('/media/games/', `/media/resize/${size}/-/games/`);
   return image;
 };
 
@@ -60,3 +60,4 @@ const getStars = (ratin) => {
 };
 
 export { getCurrentYear, getCurrentMonth, getCurrentDate, smallImage, getPlatform, getStars };
+export * from './animation';

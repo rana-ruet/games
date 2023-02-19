@@ -7,10 +7,11 @@ import { useParams } from 'react-router-dom';
 import { loadGames } from '../actions/gamesAction';
 import Game from '../components/Game';
 import GameDetail from '../components/GameDetail';
+import { fadeIn } from '../utils';
 
 function Home() {
   const dispatch = useDispatch();
-  const { popular, upcoming, newGames } = useSelector((state) => state.game);
+  const { popular, upcoming, newGames, searched } = useSelector((state) => state.game);
   const { id } = useParams();
 
   useEffect(() => {
@@ -18,19 +19,32 @@ function Home() {
   }, []);
 
   return (
-    <GameList>
+    <GameList variants={fadeIn} initial='hidden' animate='show'>
       <AnimateSharedLayout type='crossfade'>
         <AnimatePresence>{id && <GameDetail pathId={id} />}</AnimatePresence>
-        <h2>Upcoming Games</h2>
-        <Games>
-          {upcoming.map((game) => (
-            <Game key={game.id} gameData={game} />
-          ))}
-        </Games>
+
+        {searched.length ? (
+          <>
+            <h2>Search Games</h2>
+            <Games>
+              {searched.map((game) => (
+                <Game key={game.id} gameData={game} />
+              ))}
+            </Games>
+          </>
+        ) : (
+          ''
+        )}
 
         <h2>Popular Games</h2>
         <Games>
           {popular.map((game) => (
+            <Game key={game.id} gameData={game} />
+          ))}
+        </Games>
+        <h2>Upcoming Games</h2>
+        <Games>
+          {upcoming.map((game) => (
             <Game key={game.id} gameData={game} />
           ))}
         </Games>
